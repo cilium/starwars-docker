@@ -1,0 +1,32 @@
+---
+swagger: '2.0'
+info:
+  title: Deathstar
+  description: API of a Star Wars Deathstar
+  version: v1
+schemes:
+- http
+basePath: "/v1"
+produces:
+- text/plain
+consumes:
+- application/json
+paths:
+  "/":
+    get:
+      summary: Get in touch with the deathstar
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+  "/exhaustport":
+    put:
+      summary: Put something into the thermal exhaust port of the deathstar
+      responses:
+        '200':
+          description: OK
+        '503':
+          description: Deathstar exploded
+          schema:
+            type: string
