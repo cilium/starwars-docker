@@ -2,7 +2,9 @@ package restapi
 
 import (
 	"crypto/tls"
+	"fmt"
 	"net/http"
+	"time"
 
 	errors "github.com/go-openapi/errors"
 	runtime "github.com/go-openapi/runtime"
@@ -46,6 +48,12 @@ var info = `{
 }
 `
 
+var trap = `
+
+     ITS A TRAP
+
+`
+
 func configureFlags(api *operations.DeathstarAPI) {
 	// api.CommandLineOptionsGroups = []swag.CommandLineOptionsGroup{ ... }
 }
@@ -68,7 +76,21 @@ func configureAPI(api *operations.DeathstarAPI) http.Handler {
 		return operations.NewGetOK().WithPayload(info)
 	})
 	api.PutExhaustportHandler = operations.PutExhaustportHandlerFunc(func(params operations.PutExhaustportParams) middleware.Responder {
-		return operations.NewPutExhaustportServiceUnavailable().WithPayload(backtrace)
+
+		fmt.Printf("%+v", params.HTTPRequest)
+		if _, ok := params.HTTPRequest.Header["X-Has-Force"]; ok {
+			go func() {
+				time.Sleep(2 * time.Second)
+				panic("deathstar exploded")
+			}()
+
+			return operations.NewPutExhaustportServiceUnavailable().WithPayload(backtrace)
+		}
+
+		return operations.NewPutExhaustportOK().WithPayload(trap)
+	})
+	api.PostShipbayHandler = operations.PostShipbayHandlerFunc(func(params operations.PostShipbayParams) middleware.Responder {
+		return operations.NewPostShipbayOK().WithPayload("Ship landed\n")
 	})
 
 	api.ServerShutdown = func() {}

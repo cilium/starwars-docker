@@ -45,10 +45,26 @@ func init() {
         "summary": "Put something into the thermal exhaust port of the deathstar",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
           },
           "503": {
             "description": "Deathstar exploded",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/shipbay": {
+      "post": {
+        "summary": "Land a ship in the ship bay",
+        "responses": {
+          "200": {
+            "description": "OK",
             "schema": {
               "type": "string"
             }

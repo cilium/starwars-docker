@@ -32,6 +32,9 @@ func NewDeathstarAPI(spec *loads.Document) *DeathstarAPI {
 		GetHandler: GetHandlerFunc(func(params GetParams) middleware.Responder {
 			return middleware.NotImplemented("operation Get has not yet been implemented")
 		}),
+		PostShipbayHandler: PostShipbayHandlerFunc(func(params PostShipbayParams) middleware.Responder {
+			return middleware.NotImplemented("operation PostShipbay has not yet been implemented")
+		}),
 		PutExhaustportHandler: PutExhaustportHandlerFunc(func(params PutExhaustportParams) middleware.Responder {
 			return middleware.NotImplemented("operation PutExhaustport has not yet been implemented")
 		}),
@@ -55,6 +58,8 @@ type DeathstarAPI struct {
 
 	// GetHandler sets the operation handler for the get operation
 	GetHandler GetHandler
+	// PostShipbayHandler sets the operation handler for the post shipbay operation
+	PostShipbayHandler PostShipbayHandler
 	// PutExhaustportHandler sets the operation handler for the put exhaustport operation
 	PutExhaustportHandler PutExhaustportHandler
 
@@ -122,6 +127,10 @@ func (o *DeathstarAPI) Validate() error {
 
 	if o.GetHandler == nil {
 		unregistered = append(unregistered, "GetHandler")
+	}
+
+	if o.PostShipbayHandler == nil {
+		unregistered = append(unregistered, "PostShipbayHandler")
 	}
 
 	if o.PutExhaustportHandler == nil {
@@ -212,6 +221,11 @@ func (o *DeathstarAPI) initHandlerCache() {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
 	o.handlers["GET"][""] = NewGet(o.context, o.GetHandler)
+
+	if o.handlers["POST"] == nil {
+		o.handlers["POST"] = make(map[string]http.Handler)
+	}
+	o.handlers["POST"]["/shipbay"] = NewPostShipbay(o.context, o.PostShipbayHandler)
 
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)

@@ -17,6 +17,11 @@ const PutExhaustportOKCode int = 200
 swagger:response putExhaustportOK
 */
 type PutExhaustportOK struct {
+
+	/*
+	  In: Body
+	*/
+	Payload string `json:"body,omitempty"`
 }
 
 // NewPutExhaustportOK creates PutExhaustportOK with default headers values
@@ -24,10 +29,26 @@ func NewPutExhaustportOK() *PutExhaustportOK {
 	return &PutExhaustportOK{}
 }
 
+// WithPayload adds the payload to the put exhaustport o k response
+func (o *PutExhaustportOK) WithPayload(payload string) *PutExhaustportOK {
+	o.Payload = payload
+	return o
+}
+
+// SetPayload sets the payload to the put exhaustport o k response
+func (o *PutExhaustportOK) SetPayload(payload string) {
+	o.Payload = payload
+}
+
 // WriteResponse to the client
 func (o *PutExhaustportOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
 
 	rw.WriteHeader(200)
+	payload := o.Payload
+	if err := producer.Produce(rw, payload); err != nil {
+		panic(err) // let the recovery middleware deal with this
+	}
+
 }
 
 // HTTP code for type PutExhaustportServiceUnavailable
