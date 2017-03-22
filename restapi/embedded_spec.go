@@ -25,7 +25,6 @@ func init() {
     "title": "Deathstar",
     "version": "v1"
   },
-  "basePath": "/v1",
   "paths": {
     "/": {
       "get": {

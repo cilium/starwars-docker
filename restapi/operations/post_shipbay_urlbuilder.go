@@ -36,9 +36,6 @@ func (o *PostShipbayURL) Build() (*url.URL, error) {
 	var _path = "/shipbay"
 
 	_basePath := o._basePath
-	if _basePath == "" {
-		_basePath = "/v1"
-	}
 	result.Path = golangswaggerpaths.Join(_basePath, _path)
 
 	return &result, nil

@@ -6,7 +6,6 @@ info:
   version: v1
 schemes:
 - http
-basePath: "/v1"
 produces:
 - text/plain
 consumes:

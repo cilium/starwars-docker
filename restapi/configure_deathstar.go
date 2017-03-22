@@ -2,7 +2,6 @@ package restapi
 
 import (
 	"crypto/tls"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -49,9 +48,12 @@ var info = `{
 `
 
 var trap = `
-
-     ITS A TRAP
-
+  ___ _   _               _
+ |_ _| |_( )___    __ _  | |_ _ __ __ _ _ __
+  | || __|// __|  / _' | | __| '__/ _' | '_ \
+  | || |_  \__ \ | (_| | | |_| | | (_| | |_) |
+ |___|\__| |___/  \__,_|  \__|_|  \__,_| .__/
+                                       |_|
 `
 
 func configureFlags(api *operations.DeathstarAPI) {
@@ -77,7 +79,6 @@ func configureAPI(api *operations.DeathstarAPI) http.Handler {
 	})
 	api.PutExhaustportHandler = operations.PutExhaustportHandlerFunc(func(params operations.PutExhaustportParams) middleware.Responder {
 
-		fmt.Printf("%+v", params.HTTPRequest)
 		if _, ok := params.HTTPRequest.Header["X-Has-Force"]; ok {
 			go func() {
 				time.Sleep(2 * time.Second)
