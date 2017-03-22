@@ -4,6 +4,7 @@ info:
   title: Deathstar
   description: API of a Star Wars Deathstar
   version: v1
+basePath: "/v1"
 schemes:
 - http
 produces:

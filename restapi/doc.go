@@ -6,7 +6,7 @@ API of a Star Wars Deathstar
     Schemes:
       http
     Host: localhost
-    BasePath: /
+    BasePath: /v1
     Version: v1
 
     Consumes:
