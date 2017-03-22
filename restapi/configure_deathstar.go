@@ -41,20 +41,13 @@ var info = `{
 	"starship_class": "Deep Space Mobile Battlestation",
 	"api": [
 		"GET   /v1",
+		"GET   /v1/healthz",
 		"POST  /v1/requestlanding",
-		"GET   /v1/vader/secrets",
+		"PUT   /v1/cargobay",
+		"GET   /v1/hypermatterreactor/status",
 		"PUT   /v1/exhaustport"
 	]
 }
-`
-
-var trap = `
-  ___ _   _               _
- |_ _| |_( )___    __ _  | |_ _ __ __ _ _ __
-  | || __|// __|  / _' | | __| '__/ _' | '_ \
-  | || |_  \__ \ | (_| | | |_| | | (_| | |_) |
- |___|\__| |___/  \__,_|  \__|_|  \__,_| .__/
-                                       |_|
 `
 
 func configureFlags(api *operations.DeathstarAPI) {
