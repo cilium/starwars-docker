@@ -34,16 +34,17 @@ var info = `{
 	"manufacturer": "Imperial Department of Military Research, Sienar Fleet Systems",
 	"cost_in_credits": "1000000000000",
 	"length": "120000",
-	"max_atmosphering_speed": "n/a",
 	"crew": "342953",
 	"passengers": "843342",
 	"cargo_capacity": "1000000000000",
-	"consumables": "3 years",
 	"hyperdrive_rating": "4.0",
-	"MGLT": "10",
 	"starship_class": "Deep Space Mobile Battlestation",
-	"pilots": [],
-	"url": "http://swapi.co/api/starships/9/"
+	"api": [
+		"GET   /v1",
+		"POST  /v1/requestlanding",
+		"GET   /v1/vader/secrets",
+		"PUT   /v1/exhaustport"
+	]
 }
 `
 
