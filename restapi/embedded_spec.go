@@ -59,7 +59,7 @@ func init() {
         }
       }
     },
-    "/shipbay": {
+    "/requestlanding": {
       "post": {
         "summary": "Land a ship in the ship bay",
         "responses": {

@@ -32,7 +32,7 @@ paths:
           description: Deathstar exploded
           schema:
             type: string
-  "/shipbay":
+  "/requestlanding":
     post:
       summary: Land a ship in the ship bay
       responses:

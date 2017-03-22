@@ -9,15 +9,15 @@ import (
 	golangswaggerpaths "path"
 )
 
-// PostShipbayURL generates an URL for the post shipbay operation
-type PostShipbayURL struct {
+// PostRequestlandingURL generates an URL for the post requestlanding operation
+type PostRequestlandingURL struct {
 	_basePath string
 }
 
 // WithBasePath sets the base path for this url builder, only required when it's different from the
 // base path specified in the swagger spec.
 // When the value of the base path is an empty string
-func (o *PostShipbayURL) WithBasePath(bp string) *PostShipbayURL {
+func (o *PostRequestlandingURL) WithBasePath(bp string) *PostRequestlandingURL {
 	o.SetBasePath(bp)
 	return o
 }
@@ -25,15 +25,15 @@ func (o *PostShipbayURL) WithBasePath(bp string) *PostShipbayURL {
 // SetBasePath sets the base path for this url builder, only required when it's different from the
 // base path specified in the swagger spec.
 // When the value of the base path is an empty string
-func (o *PostShipbayURL) SetBasePath(bp string) {
+func (o *PostRequestlandingURL) SetBasePath(bp string) {
 	o._basePath = bp
 }
 
 // Build a url path and query string
-func (o *PostShipbayURL) Build() (*url.URL, error) {
+func (o *PostRequestlandingURL) Build() (*url.URL, error) {
 	var result url.URL
 
-	var _path = "/shipbay"
+	var _path = "/requestlanding"
 
 	_basePath := o._basePath
 	if _basePath == "" {
@@ -45,7 +45,7 @@ func (o *PostShipbayURL) Build() (*url.URL, error) {
 }
 
 // Must is a helper function to panic when the url builder returns an error
-func (o *PostShipbayURL) Must(u *url.URL, err error) *url.URL {
+func (o *PostRequestlandingURL) Must(u *url.URL, err error) *url.URL {
 	if err != nil {
 		panic(err)
 	}
@@ -56,17 +56,17 @@ func (o *PostShipbayURL) Must(u *url.URL, err error) *url.URL {
 }
 
 // String returns the string representation of the path with query string
-func (o *PostShipbayURL) String() string {
+func (o *PostRequestlandingURL) String() string {
 	return o.Must(o.Build()).String()
 }
 
 // BuildFull builds a full url with scheme, host, path and query string
-func (o *PostShipbayURL) BuildFull(scheme, host string) (*url.URL, error) {
+func (o *PostRequestlandingURL) BuildFull(scheme, host string) (*url.URL, error) {
 	if scheme == "" {
-		return nil, errors.New("scheme is required for a full url on PostShipbayURL")
+		return nil, errors.New("scheme is required for a full url on PostRequestlandingURL")
 	}
 	if host == "" {
-		return nil, errors.New("host is required for a full url on PostShipbayURL")
+		return nil, errors.New("host is required for a full url on PostRequestlandingURL")
 	}
 
 	base, err := o.Build()
@@ -80,6 +80,6 @@ func (o *PostShipbayURL) BuildFull(scheme, host string) (*url.URL, error) {
 }
 
 // StringFull returns the string representation of a complete url
-func (o *PostShipbayURL) StringFull(scheme, host string) string {
+func (o *PostRequestlandingURL) StringFull(scheme, host string) string {
 	return o.Must(o.BuildFull(scheme, host)).String()
 }

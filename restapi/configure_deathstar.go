@@ -78,20 +78,14 @@ func configureAPI(api *operations.DeathstarAPI) http.Handler {
 		return operations.NewGetOK().WithPayload(info)
 	})
 	api.PutExhaustportHandler = operations.PutExhaustportHandlerFunc(func(params operations.PutExhaustportParams) middleware.Responder {
-
-		if _, ok := params.HTTPRequest.Header["X-Has-Force"]; ok {
-			go func() {
-				time.Sleep(2 * time.Second)
-				panic("deathstar exploded")
-			}()
-
-			return operations.NewPutExhaustportServiceUnavailable().WithPayload(backtrace)
-		}
-
-		return operations.NewPutExhaustportOK().WithPayload(trap)
+		go func() {
+			time.Sleep(2 * time.Second)
+			panic("deathstar exploded")
+		}()
+		return operations.NewPutExhaustportServiceUnavailable().WithPayload(backtrace)
 	})
-	api.PostShipbayHandler = operations.PostShipbayHandlerFunc(func(params operations.PostShipbayParams) middleware.Responder {
-		return operations.NewPostShipbayOK().WithPayload("Ship landed\n")
+	api.PostRequestlandingHandler = operations.PostRequestlandingHandlerFunc(func(params operations.PostRequestlandingParams) middleware.Responder {
+		return operations.NewPostRequestlandingOK().WithPayload("Ship landed\n")
 	})
 
 	api.ServerShutdown = func() {}

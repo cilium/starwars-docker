@@ -32,8 +32,8 @@ func NewDeathstarAPI(spec *loads.Document) *DeathstarAPI {
 		GetHandler: GetHandlerFunc(func(params GetParams) middleware.Responder {
 			return middleware.NotImplemented("operation Get has not yet been implemented")
 		}),
-		PostShipbayHandler: PostShipbayHandlerFunc(func(params PostShipbayParams) middleware.Responder {
-			return middleware.NotImplemented("operation PostShipbay has not yet been implemented")
+		PostRequestlandingHandler: PostRequestlandingHandlerFunc(func(params PostRequestlandingParams) middleware.Responder {
+			return middleware.NotImplemented("operation PostRequestlanding has not yet been implemented")
 		}),
 		PutExhaustportHandler: PutExhaustportHandlerFunc(func(params PutExhaustportParams) middleware.Responder {
 			return middleware.NotImplemented("operation PutExhaustport has not yet been implemented")
@@ -58,8 +58,8 @@ type DeathstarAPI struct {
 
 	// GetHandler sets the operation handler for the get operation
 	GetHandler GetHandler
-	// PostShipbayHandler sets the operation handler for the post shipbay operation
-	PostShipbayHandler PostShipbayHandler
+	// PostRequestlandingHandler sets the operation handler for the post requestlanding operation
+	PostRequestlandingHandler PostRequestlandingHandler
 	// PutExhaustportHandler sets the operation handler for the put exhaustport operation
 	PutExhaustportHandler PutExhaustportHandler
 
@@ -129,8 +129,8 @@ func (o *DeathstarAPI) Validate() error {
 		unregistered = append(unregistered, "GetHandler")
 	}
 
-	if o.PostShipbayHandler == nil {
-		unregistered = append(unregistered, "PostShipbayHandler")
+	if o.PostRequestlandingHandler == nil {
+		unregistered = append(unregistered, "PostRequestlandingHandler")
 	}
 
 	if o.PutExhaustportHandler == nil {
@@ -225,7 +225,7 @@ func (o *DeathstarAPI) initHandlerCache() {
 	if o.handlers["POST"] == nil {
 		o.handlers["POST"] = make(map[string]http.Handler)
 	}
-	o.handlers["POST"]["/shipbay"] = NewPostShipbay(o.context, o.PostShipbayHandler)
+	o.handlers["POST"]["/requestlanding"] = NewPostRequestlanding(o.context, o.PostRequestlandingHandler)
 
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
