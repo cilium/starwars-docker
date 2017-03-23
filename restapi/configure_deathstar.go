@@ -45,7 +45,7 @@ var info = `{
 		"POST  /v1/request-landing",
 		"PUT   /v1/cargobay",
 		"GET   /v1/hyper-matter-reactor/status",
-		"PUT   /v1/exhaustport"
+		"PUT   /v1/exhaust-port"
 	]
 }
 `
@@ -71,15 +71,15 @@ func configureAPI(api *operations.DeathstarAPI) http.Handler {
 	api.GetHandler = operations.GetHandlerFunc(func(params operations.GetParams) middleware.Responder {
 		return operations.NewGetOK().WithPayload(info)
 	})
-	api.PutExhaustportHandler = operations.PutExhaustportHandlerFunc(func(params operations.PutExhaustportParams) middleware.Responder {
+	api.PutExhaustPortHandler = operations.PutExhaustPortHandlerFunc(func(params operations.PutExhaustPortParams) middleware.Responder {
 		go func() {
 			time.Sleep(2 * time.Second)
 			panic("deathstar exploded")
 		}()
-		return operations.NewPutExhaustportServiceUnavailable().WithPayload(backtrace)
+		return operations.NewPutExhaustPortServiceUnavailable().WithPayload(backtrace)
 	})
-	api.PostRequestlandingHandler = operations.PostRequestlandingHandlerFunc(func(params operations.PostRequestlandingParams) middleware.Responder {
-		return operations.NewPostRequestlandingOK().WithPayload("Ship landed\n")
+	api.PostRequestLandingHandler = operations.PostRequestLandingHandlerFunc(func(params operations.PostRequestLandingParams) middleware.Responder {
+		return operations.NewPostRequestLandingOK().WithPayload("Ship landed\n")
 	})
 
 	api.ServerShutdown = func() {}

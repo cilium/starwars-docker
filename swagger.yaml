@@ -20,7 +20,7 @@ paths:
           description: OK
           schema:
             type: string
-  "/exhaustport":
+  "/exhaust-port":
     put:
       summary: Put something into the thermal exhaust port of the deathstar
       responses:
@@ -32,7 +32,7 @@ paths:
           description: Deathstar exploded
           schema:
             type: string
-  "/requestlanding":
+  "/request-landing":
     post:
       summary: Land a ship in the ship bay
       responses:

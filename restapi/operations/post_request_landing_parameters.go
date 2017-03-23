@@ -10,18 +10,18 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 )
 
-// NewPostRequestlandingParams creates a new PostRequestlandingParams object
+// NewPostRequestLandingParams creates a new PostRequestLandingParams object
 // with the default values initialized.
-func NewPostRequestlandingParams() PostRequestlandingParams {
+func NewPostRequestLandingParams() PostRequestLandingParams {
 	var ()
-	return PostRequestlandingParams{}
+	return PostRequestLandingParams{}
 }
 
-// PostRequestlandingParams contains all the bound params for the post requestlanding operation
+// PostRequestLandingParams contains all the bound params for the post request landing operation
 // typically these are obtained from a http.Request
 //
-// swagger:parameters PostRequestlanding
-type PostRequestlandingParams struct {
+// swagger:parameters PostRequestLanding
+type PostRequestLandingParams struct {
 
 	// HTTP Request Object
 	HTTPRequest *http.Request
@@ -29,7 +29,7 @@ type PostRequestlandingParams struct {
 
 // BindRequest both binds and validates a request, it assumes that complex things implement a Validatable(strfmt.Registry) error interface
 // for simple values it will use straight method calls
-func (o *PostRequestlandingParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
+func (o *PostRequestLandingParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
 	var res []error
 	o.HTTPRequest = r
 

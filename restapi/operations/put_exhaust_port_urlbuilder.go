@@ -9,15 +9,15 @@ import (
 	golangswaggerpaths "path"
 )
 
-// PutExhaustportURL generates an URL for the put exhaustport operation
-type PutExhaustportURL struct {
+// PutExhaustPortURL generates an URL for the put exhaust port operation
+type PutExhaustPortURL struct {
 	_basePath string
 }
 
 // WithBasePath sets the base path for this url builder, only required when it's different from the
 // base path specified in the swagger spec.
 // When the value of the base path is an empty string
-func (o *PutExhaustportURL) WithBasePath(bp string) *PutExhaustportURL {
+func (o *PutExhaustPortURL) WithBasePath(bp string) *PutExhaustPortURL {
 	o.SetBasePath(bp)
 	return o
 }
@@ -25,15 +25,15 @@ func (o *PutExhaustportURL) WithBasePath(bp string) *PutExhaustportURL {
 // SetBasePath sets the base path for this url builder, only required when it's different from the
 // base path specified in the swagger spec.
 // When the value of the base path is an empty string
-func (o *PutExhaustportURL) SetBasePath(bp string) {
+func (o *PutExhaustPortURL) SetBasePath(bp string) {
 	o._basePath = bp
 }
 
 // Build a url path and query string
-func (o *PutExhaustportURL) Build() (*url.URL, error) {
+func (o *PutExhaustPortURL) Build() (*url.URL, error) {
 	var result url.URL
 
-	var _path = "/exhaustport"
+	var _path = "/exhaust-port"
 
 	_basePath := o._basePath
 	if _basePath == "" {
@@ -45,7 +45,7 @@ func (o *PutExhaustportURL) Build() (*url.URL, error) {
 }
 
 // Must is a helper function to panic when the url builder returns an error
-func (o *PutExhaustportURL) Must(u *url.URL, err error) *url.URL {
+func (o *PutExhaustPortURL) Must(u *url.URL, err error) *url.URL {
 	if err != nil {
 		panic(err)
 	}
@@ -56,17 +56,17 @@ func (o *PutExhaustportURL) Must(u *url.URL, err error) *url.URL {
 }
 
 // String returns the string representation of the path with query string
-func (o *PutExhaustportURL) String() string {
+func (o *PutExhaustPortURL) String() string {
 	return o.Must(o.Build()).String()
 }
 
 // BuildFull builds a full url with scheme, host, path and query string
-func (o *PutExhaustportURL) BuildFull(scheme, host string) (*url.URL, error) {
+func (o *PutExhaustPortURL) BuildFull(scheme, host string) (*url.URL, error) {
 	if scheme == "" {
-		return nil, errors.New("scheme is required for a full url on PutExhaustportURL")
+		return nil, errors.New("scheme is required for a full url on PutExhaustPortURL")
 	}
 	if host == "" {
-		return nil, errors.New("host is required for a full url on PutExhaustportURL")
+		return nil, errors.New("host is required for a full url on PutExhaustPortURL")
 	}
 
 	base, err := o.Build()
@@ -80,6 +80,6 @@ func (o *PutExhaustportURL) BuildFull(scheme, host string) (*url.URL, error) {
 }
 
 // StringFull returns the string representation of a complete url
-func (o *PutExhaustportURL) StringFull(scheme, host string) string {
+func (o *PutExhaustPortURL) StringFull(scheme, host string) string {
 	return o.Must(o.BuildFull(scheme, host)).String()
 }

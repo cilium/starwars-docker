@@ -32,11 +32,11 @@ func NewDeathstarAPI(spec *loads.Document) *DeathstarAPI {
 		GetHandler: GetHandlerFunc(func(params GetParams) middleware.Responder {
 			return middleware.NotImplemented("operation Get has not yet been implemented")
 		}),
-		PostRequestlandingHandler: PostRequestlandingHandlerFunc(func(params PostRequestlandingParams) middleware.Responder {
-			return middleware.NotImplemented("operation PostRequestlanding has not yet been implemented")
+		PostRequestLandingHandler: PostRequestLandingHandlerFunc(func(params PostRequestLandingParams) middleware.Responder {
+			return middleware.NotImplemented("operation PostRequestLanding has not yet been implemented")
 		}),
-		PutExhaustportHandler: PutExhaustportHandlerFunc(func(params PutExhaustportParams) middleware.Responder {
-			return middleware.NotImplemented("operation PutExhaustport has not yet been implemented")
+		PutExhaustPortHandler: PutExhaustPortHandlerFunc(func(params PutExhaustPortParams) middleware.Responder {
+			return middleware.NotImplemented("operation PutExhaustPort has not yet been implemented")
 		}),
 	}
 }
@@ -58,10 +58,10 @@ type DeathstarAPI struct {
 
 	// GetHandler sets the operation handler for the get operation
 	GetHandler GetHandler
-	// PostRequestlandingHandler sets the operation handler for the post requestlanding operation
-	PostRequestlandingHandler PostRequestlandingHandler
-	// PutExhaustportHandler sets the operation handler for the put exhaustport operation
-	PutExhaustportHandler PutExhaustportHandler
+	// PostRequestLandingHandler sets the operation handler for the post request landing operation
+	PostRequestLandingHandler PostRequestLandingHandler
+	// PutExhaustPortHandler sets the operation handler for the put exhaust port operation
+	PutExhaustPortHandler PutExhaustPortHandler
 
 	// ServeError is called when an error is received, there is a default handler
 	// but you can set your own with this
@@ -129,12 +129,12 @@ func (o *DeathstarAPI) Validate() error {
 		unregistered = append(unregistered, "GetHandler")
 	}
 
-	if o.PostRequestlandingHandler == nil {
-		unregistered = append(unregistered, "PostRequestlandingHandler")
+	if o.PostRequestLandingHandler == nil {
+		unregistered = append(unregistered, "PostRequestLandingHandler")
 	}
 
-	if o.PutExhaustportHandler == nil {
-		unregistered = append(unregistered, "PutExhaustportHandler")
+	if o.PutExhaustPortHandler == nil {
+		unregistered = append(unregistered, "PutExhaustPortHandler")
 	}
 
 	if len(unregistered) > 0 {
@@ -225,12 +225,12 @@ func (o *DeathstarAPI) initHandlerCache() {
 	if o.handlers["POST"] == nil {
 		o.handlers["POST"] = make(map[string]http.Handler)
 	}
-	o.handlers["POST"]["/requestlanding"] = NewPostRequestlanding(o.context, o.PostRequestlandingHandler)
+	o.handlers["POST"]["/request-landing"] = NewPostRequestLanding(o.context, o.PostRequestLandingHandler)
 
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
-	o.handlers["PUT"]["/exhaustport"] = NewPutExhaustport(o.context, o.PutExhaustportHandler)
+	o.handlers["PUT"]["/exhaust-port"] = NewPutExhaustPort(o.context, o.PutExhaustPortHandler)
 
 }
 

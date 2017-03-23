@@ -10,18 +10,18 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 )
 
-// NewPutExhaustportParams creates a new PutExhaustportParams object
+// NewPutExhaustPortParams creates a new PutExhaustPortParams object
 // with the default values initialized.
-func NewPutExhaustportParams() PutExhaustportParams {
+func NewPutExhaustPortParams() PutExhaustPortParams {
 	var ()
-	return PutExhaustportParams{}
+	return PutExhaustPortParams{}
 }
 
-// PutExhaustportParams contains all the bound params for the put exhaustport operation
+// PutExhaustPortParams contains all the bound params for the put exhaust port operation
 // typically these are obtained from a http.Request
 //
-// swagger:parameters PutExhaustport
-type PutExhaustportParams struct {
+// swagger:parameters PutExhaustPort
+type PutExhaustPortParams struct {
 
 	// HTTP Request Object
 	HTTPRequest *http.Request
@@ -29,7 +29,7 @@ type PutExhaustportParams struct {
 
 // BindRequest both binds and validates a request, it assumes that complex things implement a Validatable(strfmt.Registry) error interface
 // for simple values it will use straight method calls
-func (o *PutExhaustportParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
+func (o *PutExhaustPortParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
 	var res []error
 	o.HTTPRequest = r
 

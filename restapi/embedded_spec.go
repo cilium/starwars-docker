@@ -40,7 +40,7 @@ func init() {
         }
       }
     },
-    "/exhaustport": {
+    "/exhaust-port": {
       "put": {
         "summary": "Put something into the thermal exhaust port of the deathstar",
         "responses": {
@@ -59,7 +59,7 @@ func init() {
         }
       }
     },
-    "/requestlanding": {
+    "/request-landing": {
       "post": {
         "summary": "Land a ship in the ship bay",
         "responses": {
