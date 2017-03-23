@@ -42,9 +42,9 @@ var info = `{
 	"api": [
 		"GET   /v1",
 		"GET   /v1/healthz",
-		"POST  /v1/requestlanding",
+		"POST  /v1/request-landing",
 		"PUT   /v1/cargobay",
-		"GET   /v1/hypermatterreactor/status",
+		"GET   /v1/hyper-matter-reactor/status",
 		"PUT   /v1/exhaustport"
 	]
 }
