@@ -10,7 +10,7 @@ import (
 	middleware "github.com/go-openapi/runtime/middleware"
 	graceful "github.com/tylerb/graceful"
 
-	"github.com/tgraf/starwars/restapi/operations"
+	"github.com/cilium/starwars-docker/restapi/operations"
 )
 
 // This file is safe to edit. Once it exists it will not be overwritten

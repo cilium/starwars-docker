@@ -18,7 +18,7 @@ import (
 	flags "github.com/jessevdk/go-flags"
 	graceful "github.com/tylerb/graceful"
 
-	"github.com/tgraf/starwars/restapi/operations"
+	"github.com/cilium/starwars-docker/restapi/operations"
 )
 
 const (
