@@ -1,16 +1,16 @@
 # BUILDER
-FROM alpine:3.7 as builder
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.20 as builder
 
-RUN apk upgrade \
-	&& apk add --no-cache go musl-dev
+ARG TARGETPLATFORM
+ARG TARGETOS
+ARG TARGETARCH
 
-ENV GOPATH=/go
-COPY . /go/src/github.com/cilium/starwars-docker/
-RUN go install -v github.com/cilium/starwars-docker/
+WORKDIR /app
+ADD . .
+RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build
 
 # RUNTIME
-FROM alpine:3.7
-LABEL maintainer "Thomas Graf <tgraf@tgraf.ch>"
-COPY --from=builder /go/bin/starwars-docker /
+FROM --platform=${TARGETPLATFORM:-linux/amd64} scratch
+COPY --from=builder /app/starwars-docker /
 EXPOSE 80
 ENTRYPOINT ["/starwars-docker", "--port", "80", "--host", "0.0.0.0"]
