@@ -2,7 +2,9 @@ package restapi
 
 import (
 	"crypto/tls"
+	"fmt"
 	"net/http"
+	"os"
 	"time"
 
 	errors "github.com/go-openapi/errors"
@@ -28,8 +30,11 @@ main.main()
         temp/main.go:5 +0x85
 `
 
-var info = `{
+var hostname, _ = os.Hostname()
+
+var info = fmt.Sprintf(`{
 	"name": "Death Star",
+	"hostname": "%s",
 	"model": "DS-1 Orbital Battle Station",
 	"manufacturer": "Imperial Department of Military Research, Sienar Fleet Systems",
 	"cost_in_credits": "1000000000000",
@@ -48,7 +53,7 @@ var info = `{
 		"PUT   /v1/exhaust-port"
 	]
 }
-`
+`, hostname)
 
 func configureFlags(api *operations.DeathstarAPI) {
 	// api.CommandLineOptionsGroups = []swag.CommandLineOptionsGroup{ ... }
