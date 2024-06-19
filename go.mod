@@ -28,7 +28,7 @@ require (
 	github.com/pborman/uuid v1.2.1 // indirect
 	github.com/stretchr/testify v1.8.4 // indirect
 	golang.org/x/net v0.0.0-20170114055629-f2499483f923 // indirect
-	golang.org/x/text v0.0.0-20160726164857-2910a502d2bf // indirect
+	golang.org/x/text v0.3.8 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/yaml.v2 v2.0.0-20151201162745-f7716cbe52ba // indirect
 )
