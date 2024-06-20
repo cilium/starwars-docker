@@ -1,10 +1,14 @@
 package restapi
 
 import (
+	"bytes"
 	"crypto/tls"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os"
+	"strconv"
+	"strings"
 	"time"
 
 	errors "github.com/go-openapi/errors"
@@ -55,6 +59,14 @@ var info = fmt.Sprintf(`{
 }
 `, hostname)
 
+func landingResponse() string {
+	var landingResponseMsg, ok = os.LookupEnv("LANDING_RESPONSE_MSG")
+	if !ok {
+		landingResponseMsg = "Ship landed!\n"
+	}
+	return landingResponseMsg
+}
+
 func configureFlags(api *operations.DeathstarAPI) {
 	// api.CommandLineOptionsGroups = []swag.CommandLineOptionsGroup{ ... }
 }
@@ -84,7 +96,40 @@ func configureAPI(api *operations.DeathstarAPI) http.Handler {
 		return operations.NewPutExhaustPortServiceUnavailable().WithPayload(backtrace)
 	})
 	api.PostRequestLandingHandler = operations.PostRequestLandingHandlerFunc(func(params operations.PostRequestLandingParams) middleware.Responder {
-		return operations.NewPostRequestLandingOK().WithPayload("Ship landed\n")
+		var landingRequestURL, ok = os.LookupEnv("LANDING_REQUEST_URL")
+		if !ok {
+			return operations.NewPostRequestLandingOK().WithPayload(landingResponse() + "\n")
+		} else {
+			jsonBody := []byte(``)
+			bodyReader := bytes.NewReader(jsonBody)
+
+			nr, _ := http.NewRequest(http.MethodPost, landingRequestURL, bodyReader)
+			nr.Header = params.HTTPRequest.Header.Clone()
+			client := http.Client{
+				Timeout: 30 * time.Second,
+			}
+
+			res, err := client.Do(nr)
+
+			if err != nil {
+				fmt.Printf("client: error making http request: %s\n", err)
+				return operations.NewPostRequestLandingServiceUnavailable().WithPayload(
+					"Request Forward to " + landingRequestURL + " Failed\nUnknon Request Error")
+			}
+
+			resBody, err := ioutil.ReadAll(res.Body)
+			if err != nil {
+				fmt.Printf("client: could not read response body: %s\n", err)
+				return operations.NewPostRequestLandingServiceUnavailable().WithPayload(
+					"Request Forward to " + landingRequestURL + " Failed\nError Reading Response Body")
+			}
+			if res.StatusCode == 200 {
+				return operations.NewPostRequestLandingOK().WithPayload(strings.TrimRight(string(resBody), "\r\n") + "\nRequest Forwarded to " + landingRequestURL + "\n")
+			} else {
+				return operations.NewPostRequestLandingServiceUnavailable().WithPayload("Request Forward to " +
+					landingRequestURL + " Failed\nRemote StatusCode:" + strconv.Itoa(res.StatusCode) + "\n")
+			}
+		}
 	})
 
 	api.ServerShutdown = func() {}

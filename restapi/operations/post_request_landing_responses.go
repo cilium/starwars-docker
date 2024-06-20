@@ -50,3 +50,44 @@ func (o *PostRequestLandingOK) WriteResponse(rw http.ResponseWriter, producer ru
 	}
 
 }
+
+// HTTP code for type PostRequestLandingServiceUnavailable
+const PostRequestLandingServiceUnavailableCode int = 503
+
+/*PostRequestLandingServiceUnavailable Landing Request Service Not available
+
+swagger:response postRequestLandingServiceUnavailable
+*/
+type PostRequestLandingServiceUnavailable struct {
+
+	/*
+	  In: Body
+	*/
+	Payload string `json:"body,omitempty"`
+}
+
+// NewPostRequestLandingServiceUnavailable creates PostRequestLandingServiceUnavailable with default headers values
+func NewPostRequestLandingServiceUnavailable() *PostRequestLandingServiceUnavailable {
+	return &PostRequestLandingServiceUnavailable{}
+}
+
+// WithPayload adds the payload to the post request landing service unavailable response
+func (o *PostRequestLandingServiceUnavailable) WithPayload(payload string) *PostRequestLandingServiceUnavailable {
+	o.Payload = payload
+	return o
+}
+
+// SetPayload sets the payload to the post request landing service unavailable response
+func (o *PostRequestLandingServiceUnavailable) SetPayload(payload string) {
+	o.Payload = payload
+}
+
+// WriteResponse to the client
+func (o *PostRequestLandingServiceUnavailable) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+
+	rw.WriteHeader(503)
+	payload := o.Payload
+	if err := producer.Produce(rw, payload); err != nil {
+		panic(err) // let the recovery middleware deal with this
+	}
+}

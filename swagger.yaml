@@ -40,3 +40,7 @@ paths:
           description: OK
           schema:
             type: string
+        '503':
+          description: Landing Request Service Not available
+          schema:
+            type: string
