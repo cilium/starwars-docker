@@ -27,8 +27,8 @@ require (
 	github.com/mitchellh/mapstructure v0.0.0-20161211222315-bfdb1a85537d // indirect
 	github.com/pborman/uuid v1.2.1 // indirect
 	github.com/stretchr/testify v1.8.4 // indirect
-	golang.org/x/net v0.23.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/net v0.38.0 // indirect
+	golang.org/x/text v0.23.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
