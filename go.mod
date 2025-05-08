@@ -1,6 +1,8 @@
 module github.com/cilium/starwars-docker
 
-go 1.19
+go 1.23.0
+
+toolchain go1.24.2
 
 require (
 	github.com/go-openapi/errors v0.0.0-20170104180542-fc3f73a22449
